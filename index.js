@@ -171,7 +171,7 @@ function handleAnswerRequest(intent, session, callback) {
     } else*/ if (!answerSlotValid) { //} && !userGaveUp) {
         // If the user provided answer isn't a number
         var reprompt = session.attributes.speechOutput;
-        var speechOutput = "I'm sorry - your answer must be a number!. " + reprompt;
+        var speechOutput = "This isn't Wordwang - your answer must be a number! " + reprompt;
         callback(session.attributes,
             buildSpeechletResponse(CARD_TITLE, speechOutput, reprompt, false));
     } else {
@@ -279,8 +279,7 @@ function handleFinishSessionRequest(intent, session, callback) {
 function isAnswerSlotValid(intent) {
     var answerSlotFilled = intent.slots && intent.slots.Answer && intent.slots.Answer.value;
     var answerSlotIsInt = answerSlotFilled && !isNaN(parseInt(intent.slots.Answer.value));
-    // TODO: fix!!!
-    return true; //answerSlotIsInt;
+    return answerSlotIsInt;
 }
 
 // ------- Helper functions to build responses -------
